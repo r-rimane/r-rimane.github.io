@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JobPilot — Détails du projet</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <style>
+    /* ─── RESET & VARIABLES (Identiques au portfolio) ─── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg-0: #080c10; --bg-1: #0d1117; --bg-2: #111820; --bg-3: #18212e;
+      --border: rgba(0,210,180,.12); --border-hover: rgba(0,210,180,.35);
+      --cyan: #00d2b4; --cyan-dim: rgba(0,210,180,.15);
+      --amber: #f5a623; --amber-dim: rgba(245,166,35,.12);
+      --text-1: #e8edf3; --text-2: #8b98a8; --text-3: #56697a;
+      --radius: 12px; --nav-h: 68px;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif; background: var(--bg-0);
+      color: var(--text-1); overflow-x: hidden; cursor: none;
+    }
+
+    /* ─── CURSOR & NOISE ─── */
+    .cursor-dot, .cursor-ring {
+      position: fixed; border-radius: 50%; pointer-events: none; z-index: 9999;
+      transition: transform .15s ease, opacity .15s;
+    }
+    .cursor-dot { width: 6px; height: 6px; background: var(--cyan); transform: translate(-50%, -50%); }
+    .cursor-ring {
+      width: 32px; height: 32px; border: 1.5px solid rgba(0,210,180,.5);
+      transform: translate(-50%, -50%); transition: transform .25s ease, width .25s, height .25s, border-color .25s;
+    }
+    body:has(a:hover) .cursor-ring, body:has(button:hover) .cursor-ring { width: 46px; height: 46px; border-color: var(--cyan); }
+    body::before {
+      content: ''; position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 1; opacity: .4;
+    }
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--bg-0); }
+    ::-webkit-scrollbar-thumb { background: var(--cyan); border-radius: 2px; }
+
+    /* ─── NAV MINIMALISTE ─── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; height: var(--nav-h);
+      display: flex; align-items: center; padding: 0 clamp(1.5rem, 5vw, 4rem);
+      background: rgba(8,12,16,.85); backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border); z-index: 100;
+    }
+    .btn-back {
+      display: inline-flex; align-items: center; gap: .6rem;
+      font-family: 'DM Sans', sans-serif; font-size: .9rem; font-weight: 500;
+      color: var(--text-2); text-decoration: none; transition: color .2s;
+    }
+    .btn-back:hover { color: var(--cyan); }
+
+    /* ─── HEADER PROJET ─── */
+    .project-hero {
+      padding: calc(var(--nav-h) + 4rem) clamp(1.5rem, 7vw, 6rem) 4rem;
+      max-width: 900px; margin: 0 auto; text-align: center;
+      position: relative; z-index: 2;
+    }
+    .project-label {
+      font-family: 'JetBrains Mono', monospace; font-size: .8rem; color: var(--cyan);
+      letter-spacing: .1em; text-transform: uppercase; margin-bottom: 1rem; display: block;
+    }
+    .project-title {
+      font-family: 'Syne', sans-serif; font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 800; line-height: 1.1; margin-bottom: 1.5rem;
+    }
+    .project-desc {
+      font-size: 1.1rem; color: var(--text-2); line-height: 1.7; margin-bottom: 2rem;
+    }
+    .project-badges { display: flex; justify-content: center; flex-wrap: wrap; gap: .6rem; }
+    .badge {
+      font-family: 'JetBrains Mono', monospace; font-size: .75rem; padding: .35rem .8rem; border-radius: 100px;
+    }
+    .badge-cyan { background: var(--cyan-dim); color: var(--cyan); border: 1px solid rgba(0,210,180,.25); }
+    .badge-amber { background: var(--amber-dim); color: var(--amber); border: 1px solid rgba(245,166,35,.25); }
+    .badge-purple { background: rgba(137,87,229,.12); color: #a78bfa; border: 1px solid rgba(137,87,229,.25); }
+    .badge-blue { background: rgba(56,139,253,.12); color: #79b8ff; border: 1px solid rgba(56,139,253,.25); }
+
+    /* ─── GALERIE CAPTURES ─── */
+    .gallery-section {
+      padding: 2rem clamp(1.5rem, 7vw, 6rem) 6rem; position: relative; z-index: 2;
+    }
+    .gallery-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 2rem;
+      max-width: 1200px; margin: 0 auto;
+    }
+    .screenshot-card {
+      background: var(--bg-2); border: 1px solid var(--border);
+      border-radius: var(--radius); overflow: hidden;
+      transition: border-color .3s, transform .3s;
+    }
+    .screenshot-card:hover { border-color: var(--border-hover); transform: translateY(-4px); }
+    .screenshot-img-wrapper {
+      width: 100%; aspect-ratio: 16/9; background: var(--bg-1);
+      border-bottom: 1px solid var(--border); overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .screenshot-img-wrapper img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform .4s ease;
+    }
+    .screenshot-card:hover .screenshot-img-wrapper img { transform: scale(1.03); }
+    
+    .screenshot-caption { padding: 1.2rem 1.5rem; }
+    .caption-title {
+      font-family: 'Syne', sans-serif; font-size: 1.05rem;
+      font-weight: 700; color: var(--text-1); margin-bottom: .4rem;
+    }
+    .caption-text { font-size: .85rem; color: var(--text-2); line-height: 1.6; }
+
+    /* FOOTER */
+    footer {
+      padding: 2.5rem clamp(1.5rem, 7vw, 6rem); background: var(--bg-0);
+      border-top: 1px solid var(--border); display: flex; justify-content: center; position: relative; z-index: 2;
+    }
+    .footer-text { font-family: 'JetBrains Mono', monospace; font-size: .8rem; color: var(--text-3); }
+    .footer-text span { color: var(--cyan); }
+
+    @media (max-width: 600px) {
+      .gallery-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <nav>
+    <a href="index.html#projets" class="btn-back">
+      <i class="fa-solid fa-arrow-left"></i> Retour au portfolio
+    </a>
+  </nav>
+
+  <header class="project-hero">
+    <span class="project-label">// Projet Complet</span>
+    <h1 class="project-title">JobPilot</h1>
+    <p class="project-desc">
+      Développement d'un Job Board complet permettant la mise en relation entre candidats et entreprises. Intégration d'un panel d'administration, d'un système d'authentification sécurisé et d'une API REST.
+    </p>
+    <div class="project-badges">
+      <span class="badge badge-cyan">Laravel 11</span>
+      <span class="badge badge-cyan">PHP 8.2</span>
+      <span class="badge badge-blue">SQLite / Eloquent</span>
+      <span class="badge badge-purple">Blade</span>
+      <span class="badge badge-amber">JetStream</span>
+    </div>
+  </header>
+
+  <section class="gallery-section">
+    <div class="gallery-grid">
+      
+      <div class="screenshot-card">
+        <div class="screenshot-img-wrapper">
+          <img src="https://via.placeholder.com/800x450/111820/00d2b4?text=Accueil+JobPilot" alt="Page d'accueil" />
+        </div>
+        <div class="screenshot-caption">
+          <h3 class="caption-title">Page d'accueil</h3>
+          <p class="caption-text">Vue principale listant les dernières offres d'emploi disponibles avec système de recherche multicritères.</p>
+        </div>
+      </div>
+
+      <div class="screenshot-card">
+        <div class="screenshot-img-wrapper">
+          <img src="https://via.placeholder.com/800x450/111820/00d2b4?text=Dashboard+Entreprise" alt="Dashboard" />
+        </div>
+        <div class="screenshot-caption">
+          <h3 class="caption-title">Dashboard Entreprise</h3>
+          <p class="caption-text">Espace privé (sécurisé via JetStream) permettant aux recruteurs de publier et gérer leurs annonces (CRUD).</p>
+        </div>
+      </div>
+
+      <div class="screenshot-card">
+        <div class="screenshot-img-wrapper">
+          <img src="https://via.placeholder.com/800x450/111820/00d2b4?text=Base+de+donnees" alt="Base de données" />
+        </div>
+        <div class="screenshot-caption">
+          <h3 class="caption-title">Architecture BDD</h3>
+          <p class="caption-text">Modélisation des relations complexes (One-to-Many, Many-to-Many) gérées avec l'ORM Eloquent.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-text">&lt;<span>Rayan RIMANE</span> /&gt;</div>
+  </footer>
+
+  <script>
+    /* Custom cursor (Identique à l'accueil) */
+    const dot = document.getElementById('cursorDot');
+    const ring = document.getElementById('cursorRing');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+    (function loop() {
+      rx += (mx - rx) * .14; ry += (my - ry) * .14;
+      dot.style.left = mx + 'px'; dot.style.top = my + 'px';
+      ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+      requestAnimationFrame(loop);
+    })();
+  </script>
+</body>
+</html>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Portfolio — Développeur Fullstack</title>
+  <title>Rayan Rimane — Portfolio Développeur</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
@@ -279,46 +279,71 @@
       transform: translateY(-2px);
     }
 
+    /* ─── HERO VISUAL (GLASSMORPHISM CARDS) ──────────────── */
     .hero-visual {
       position: relative; z-index: 2;
       display: flex; justify-content: center;
     }
-    .hero-terminal {
-      width: 100%; max-width: 420px;
-      background: var(--bg-2);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      overflow: hidden;
-      box-shadow: 0 24px 80px rgba(0,0,0,.5), 0 0 0 1px rgba(0,210,180,.05);
+    .visual-container {
+      position: relative;
+      width: 100%;
+      max-width: 500px;
+      height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
-    .terminal-bar {
-      padding: .85rem 1.2rem;
-      background: var(--bg-3);
-      border-bottom: 1px solid var(--border);
-      display: flex; align-items: center; gap: .55rem;
+    .glow-sphere {
+      position: absolute;
+      width: 250px;
+      height: 250px;
+      background: radial-gradient(circle, rgba(0,210,180,0.15) 0%, transparent 70%);
+      border-radius: 50%;
+      filter: blur(20px);
+      animation: pulse 8s infinite ease-in-out;
     }
-    .t-dot {
-      width: 11px; height: 11px; border-radius: 50%;
-    }
-    .t-dot.red { background: #ff5f57; }
-    .t-dot.amber { background: #ffbd2e; }
-    .t-dot.green { background: #28c840; }
-    .terminal-title {
+    .float-card {
+      position: absolute;
+      background: rgba(17, 24, 32, 0.6);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border-hover);
+      padding: 1rem 1.5rem;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
       font-family: 'JetBrains Mono', monospace;
-      font-size: .72rem; color: var(--text-3);
-      margin-left: .4rem;
+      font-size: 0.9rem;
+      color: var(--text-1);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      z-index: 5;
+      transition: transform 0.3s ease;
     }
-    .terminal-body {
-      padding: 1.4rem 1.6rem 1.8rem;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: .82rem; line-height: 1.9;
+    .float-card i {
+      font-size: 1.4rem;
+      color: var(--cyan);
     }
-    .t-line { display: flex; gap: .5rem; }
-    .t-prompt { color: var(--cyan); }
-    .t-cmd { color: var(--text-1); }
-    .t-out { color: var(--text-2); padding-left: 1.2rem; }
-    .t-out.green { color: #5dde82; padding-left: 1.2rem; }
-    .t-out.amber { color: var(--amber); padding-left: 1.2rem; }
+    .float-card:hover {
+      transform: scale(1.05) translateY(-5px);
+      border-color: var(--cyan);
+    }
+    .c1 { top: 10%; left: 15%; animation: float 5s infinite ease-in-out; }
+    .c2 { top: 25%; right: 10%; animation: float 6s infinite ease-in-out 1s; }
+    .c3 { bottom: 20%; left: 5%; animation: float 7s infinite ease-in-out 0.5s; }
+    .c4 { bottom: 10%; right: 20%; animation: float 5.5s infinite ease-in-out 1.5s; }
+    .abstract-shape {
+      position: absolute;
+      border: 1px dashed var(--border);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .s1 { width: 350px; height: 350px; opacity: 0.2; }
+    .s2 { width: 450px; height: 450px; opacity: 0.1; }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
 
     /* ─── SKILLS ─────────────────────────────────────────── */
     #competences { background: var(--bg-1); }
@@ -503,6 +528,7 @@
       display: flex; align-items: center; justify-content: center;
       font-size: .9rem; color: var(--cyan);
     }
+    .source-icon i { color: var(--cyan); }
     .source-name {
       font-family: 'Syne', sans-serif;
       font-size: .95rem; font-weight: 700; color: var(--text-1);
@@ -678,13 +704,11 @@
 </head>
 <body>
 
-  <!-- CURSOR -->
   <div class="cursor-dot" id="cursorDot"></div>
   <div class="cursor-ring" id="cursorRing"></div>
 
-  <!-- NAV -->
   <nav>
-    <a href="#hero" class="nav-logo">&lt;<span>dev</span>.portfolio /&gt;</a>
+    <a href="#hero" class="nav-logo">&lt;<span>rayan</span>.rimane /&gt;</a>
     <ul class="nav-links">
       <li><a href="#competences">Compétences</a></li>
       <li><a href="#projets">Projets</a></li>
@@ -697,7 +721,6 @@
     </button>
   </nav>
 
-  <!-- MOBILE MENU -->
   <div class="mobile-menu" id="mobileMenu">
     <a href="#competences" class="mob-link">Compétences</a>
     <a href="#projets" class="mob-link">Projets</a>
@@ -706,7 +729,6 @@
     <a href="#contact" class="mob-link">Contact</a>
   </div>
 
-  <!-- ─── HERO ─────────────────────────────────────── -->
   <section id="hero">
     <div class="hero-grid-bg"></div>
     <div class="hero-glow"></div>
@@ -715,8 +737,8 @@
       <div class="hero-tag">BTS SIO · Option SLAM</div>
 
       <h1 class="hero-name">
-        <span class="first">Prénom</span>
-        <span class="last">NOM</span>
+        <span class="first">Rayan</span>
+        <span class="last">RIMANE</span>
       </h1>
 
       <p class="hero-title" id="typedTitle">
@@ -741,40 +763,35 @@
     </div>
 
     <div class="hero-visual">
-      <div class="hero-terminal">
-        <div class="terminal-bar">
-          <div class="t-dot red"></div>
-          <div class="t-dot amber"></div>
-          <div class="t-dot green"></div>
-          <span class="terminal-title">~/portfolio — zsh</span>
+      <div class="visual-container">
+        <div class="glow-sphere"></div>
+        
+        <div class="float-card c1 reveal">
+          <i class="fa-brands fa-laravel"></i>
+          <span>Laravel</span>
         </div>
-        <div class="terminal-body">
-          <div class="t-line"><span class="t-prompt">~$</span><span class="t-cmd"> whoami</span></div>
-          <div class="t-out green">→ Étudiant BTS SIO SLAM</div>
-          <br>
-          <div class="t-line"><span class="t-prompt">~$</span><span class="t-cmd"> cat stack.json</span></div>
-          <div class="t-out">{</div>
-          <div class="t-out">&nbsp;&nbsp;"lang": ["PHP", "JS", "Python"],</div>
-          <div class="t-out">&nbsp;&nbsp;"back": ["Laravel", "Node.js"],</div>
-          <div class="t-out">&nbsp;&nbsp;"front": ["React", "Tailwind"],</div>
-          <div class="t-out">&nbsp;&nbsp;"tools": ["Docker", "Git", "Notion"]</div>
-          <div class="t-out">}</div>
-          <br>
-          <div class="t-line"><span class="t-prompt">~$</span><span class="t-cmd"> git log --oneline</span></div>
-          <div class="t-out amber">▪ feat: CRUD Laravel + Auth</div>
-          <div class="t-out amber">▪ feat: Site vitrine responsive</div>
-          <div class="t-out amber">▪ chore: Docker setup</div>
-          <br>
-          <div class="t-line"><span class="t-prompt">~$</span><span class="t-cmd"> _</span></div>
+        <div class="float-card c2 reveal">
+          <i class="fa-brands fa-github"></i>
+          <span>Github</span>
         </div>
+        <div class="float-card c3 reveal">
+          <i class="fa-solid fa-database"></i>
+          <span>SQL</span>
+        </div>
+        <div class="float-card c4 reveal">
+          <i class="fa-solid fa-code"></i>
+          <span>VS Code</span>
+        </div>
+
+        <div class="abstract-shape s1"></div>
+        <div class="abstract-shape s2"></div>
       </div>
     </div>
   </section>
 
-  <!-- ─── COMPÉTENCES ───────────────────────────── -->
   <section id="competences">
     <div class="section-label">Compétences</div>
-    <h2 class="section-title reveal">Ma <em>stack</em> technique</h2>
+    <h2 class="section-title reveal">Mes <em>compétences</em> techniques</h2>
 
     <div class="skills-grid">
       <div class="skill-card reveal">
@@ -786,6 +803,8 @@
           <span class="skill-tag">Python</span>
           <span class="skill-tag">SQL</span>
           <span class="skill-tag">HTML / CSS</span>
+          <span class="skill-tag">C#</span>
+          <span class="skill-tag">Pascal</span>
         </div>
       </div>
 
@@ -796,18 +815,18 @@
           <span class="skill-tag">Laravel</span>
           <span class="skill-tag">React</span>
           <span class="skill-tag">Tailwind CSS</span>
-          <span class="skill-tag">Node.js</span>
+          <span class="skill-tag">.NET</span>
         </div>
       </div>
 
       <div class="skill-card reveal">
         <div class="skill-card-icon"><i class="fa-solid fa-screwdriver-wrench"></i></div>
-        <div class="skill-card-title">Outils & DevOps</div>
+        <div class="skill-card-title">Outils & Environnement</div>
         <div class="skill-tags">
-          <span class="skill-tag">Docker</span>
+          <span class="skill-tag">UwAmp</span>
           <span class="skill-tag">Git / GitHub</span>
-          <span class="skill-tag">Notion</span>
           <span class="skill-tag">VS Code</span>
+          <span class="skill-tag">Visual Studio 2022</span>
           <span class="skill-tag">Postman</span>
         </div>
       </div>
@@ -817,7 +836,7 @@
         <div class="skill-card-title">Bases de données</div>
         <div class="skill-tags">
           <span class="skill-tag">MySQL</span>
-          <span class="skill-tag">PostgreSQL</span>
+          <span class="skill-tag">SQL Server</span>
           <span class="skill-tag">SQLite</span>
           <span class="skill-tag">Eloquent ORM</span>
         </div>
@@ -828,7 +847,7 @@
         <div class="skill-card-title">Conception</div>
         <div class="skill-tags">
           <span class="skill-tag">Figma</span>
-          <span class="skill-tag">UML / Merise</span>
+          <span class="skill-tag">UI / UX Design</span>
           <span class="skill-tag">Responsive Design</span>
           <span class="skill-tag">REST API</span>
         </div>
@@ -836,102 +855,91 @@
 
       <div class="skill-card reveal">
         <div class="skill-card-icon"><i class="fa-solid fa-shield-halved"></i></div>
-        <div class="skill-card-title">Méthodes</div>
+        <div class="skill-card-title">Qualité et Bonnes Pratiques</div>
         <div class="skill-tags">
-          <span class="skill-tag">Agile / Scrum</span>
-          <span class="skill-tag">OWASP</span>
-          <span class="skill-tag">Clean Code</span>
-          <span class="skill-tag">MVC</span>
+          <span class="skill-tag">Protection RGPD</span>
+          <span class="skill-tag">Tests Unitaires</span>
+          <span class="skill-tag">Documentation Technique</span>
+          <span class="skill-tag">Méthodes Agiles</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ─── PROJETS ───────────────────────────────── -->
   <section id="projets">
     <div class="section-label">Projets</div>
     <h2 class="section-title reveal">Ce que j'ai <em>construit</em></h2>
 
     <div class="projects-grid">
-      <!-- Projet 1 -->
+        <div class="project-card reveal">
+          <div class="project-header">
+            <div class="project-icon"><i class="fa-brands fa-laravel"></i></div>
+            <div class="project-links">
+              <a href="https://github.com/r-rimane/JobPilot" class="project-link" title="Code source GitHub"><i class="fa-brands fa-github"></i></a>
+              <a href="jobpilot.html" class="project-link" title="Voir des captures d'écrans"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+            </div>
+          </div>
+          <div class="project-body">
+            <h3 class="project-title">JobPilot - Plateforme de Recrutement</h3>
+            <p class="project-desc">
+              Développement d'un Job Board complet permettant la mise en relation entre candidats et entreprises. Intégration d'un panel d'administration (CRUD), d'un système d'authentification sécurisé et conception d'une API REST.
+            </p>
+            <div class="project-badges">
+              <span class="badge badge-cyan">Laravel 11</span>
+              <span class="badge badge-cyan">PHP 8.2</span>
+              <span class="badge badge-blue">SQLite / Eloquent</span>
+              <span class="badge badge-purple">Blade</span>
+              <span class="badge badge-amber">JetStream</span>
+            </div>
+          </div>
+        </div>
+
       <div class="project-card reveal">
         <div class="project-header">
-          <div class="project-icon"><i class="fa-brands fa-laravel"></i></div>
+          <div class="project-icon"><i class="fa-solid fa-shapes"></i></div>
           <div class="project-links">
-            <a href="#" class="project-link" title="GitHub"><i class="fa-brands fa-github"></i></a>
-            <a href="#" class="project-link" title="Demo"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+            <a href="https://github.com/r-rimane/AppEducative-Geometrie" class="project-link" title="Code source GitHub"><i class="fa-brands fa-github"></i></a>
+            <a href="geometrie.html" class="project-link" title="Voir des captures d'écran"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
           </div>
         </div>
         <div class="project-body">
-          <h3 class="project-title">GestiTask — CRUD Laravel</h3>
+          <h3 class="project-title">Geometry Game - Application Éducative</h3>
           <p class="project-desc">
-            Application de gestion de tâches avec authentification complète (Breeze),
-            système de rôles (admin / utilisateur), API REST et interface dynamique.
-            Architecture MVC stricte avec validation des données côté serveur.
+            Développement d'une application de bureau ludique destinée aux enfants. Elle propose une interface interactive pour faciliter l'apprentissage et la révision des mathématiques (calculs d'aires et de périmètres).
           </p>
           <div class="project-badges">
-            <span class="badge badge-cyan">Laravel 11</span>
-            <span class="badge badge-cyan">PHP 8.2</span>
+            <span class="badge badge-amber">C#</span>
+            <span class="badge badge-blue">.NET</span>
+            <span class="badge badge-purple">POO (Objet)</span>
+            <span class="badge badge-cyan">Visual Studio</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-header">
+          <div class="project-icon"><i class="fa-solid fa-newspaper"></i></div>
+          <div class="project-links">
+            <a href="https://github.com/r-rimane/DigitalPhishing" class="project-link" title="Code source GitHub"><i class="fa-brands fa-github"></i></a>
+            <a href="digitalphishing.html" class="project-link" title="Voir des captures d'écran"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+        <div class="project-body">
+          <h3 class="project-title">Digital Phishing - Gestion Presse</h3>
+          <p class="project-desc">
+            Application métier développée en C# dédiée à l'administration d'une maison d'édition. Elle intègre des interfaces de gestion (CRUD) pour le suivi des pigistes, l'édition des contrats et la parution des magazines, le tout relié à une base de données locale MySQL.
+          </p>
+          <div class="project-badges">
+            <span class="badge badge-amber">C# / .NET</span>
             <span class="badge badge-blue">MySQL</span>
-            <span class="badge badge-purple">Blade</span>
-            <span class="badge badge-amber">Docker</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Projet 2 -->
-      <div class="project-card reveal">
-        <div class="project-header">
-          <div class="project-icon"><i class="fa-solid fa-globe"></i></div>
-          <div class="project-links">
-            <a href="#" class="project-link" title="GitHub"><i class="fa-brands fa-github"></i></a>
-            <a href="#" class="project-link" title="Demo"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-          </div>
-        </div>
-        <div class="project-body">
-          <h3 class="project-title">Site Vitrine Responsive</h3>
-          <p class="project-desc">
-            Site vitrine multi-pages pour une entreprise fictive, entièrement responsive
-            mobile-first. Animations CSS au scroll, formulaire de contact fonctionnel
-            et optimisation des performances (Lighthouse 95+).
-          </p>
-          <div class="project-badges">
-            <span class="badge badge-amber">HTML5 / CSS3</span>
-            <span class="badge badge-cyan">JavaScript ES6</span>
-            <span class="badge badge-blue">Responsive</span>
-            <span class="badge badge-purple">Figma</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Projet 3 -->
-      <div class="project-card reveal">
-        <div class="project-header">
-          <div class="project-icon"><i class="fa-brands fa-react"></i></div>
-          <div class="project-links">
-            <a href="#" class="project-link" title="GitHub"><i class="fa-brands fa-github"></i></a>
-            <a href="#" class="project-link" title="Demo"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-          </div>
-        </div>
-        <div class="project-body">
-          <h3 class="project-title">Dashboard React + API</h3>
-          <p class="project-desc">
-            Interface d'administration SPA connectée à une API Laravel. Gestion d'état
-            avec Context API, composants réutilisables, graphiques dynamiques et
-            filtres en temps réel.
-          </p>
-          <div class="project-badges">
-            <span class="badge badge-blue">React 18</span>
-            <span class="badge badge-cyan">Laravel API</span>
-            <span class="badge badge-amber">Chart.js</span>
-            <span class="badge badge-purple">Tailwind</span>
+            <span class="badge badge-purple">NuGet</span>
+            <span class="badge badge-cyan">CRUD</span>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ─── VEILLE ────────────────────────────────── -->
   <section id="veille">
     <div class="section-label">Veille Technologique</div>
     <h2 class="section-title reveal">Ma <em>méthodologie</em> de veille</h2>
@@ -953,7 +961,7 @@
             <span class="step-num">01</span>
             <div class="step-info">
               <strong>Sourcing avec Feedly</strong>
-              <span>Agrégation de flux RSS : Dev.to, CSS-Tricks, Laravel News, Hacker News, journaux officiels PHP/React.</span>
+              <span>Agrégation de flux RSS : Next, LeMagIT, LeMondeInformatique, ZATAZ, Developpez.com, Programmez! ... </span>
             </div>
           </div>
           <div class="veille-step">
@@ -967,19 +975,19 @@
             <span class="step-num">03</span>
             <div class="step-info">
               <strong>Stockage dans Notion</strong>
-              <span>Base de connaissances organisée par thèmes (Sécurité, Frameworks, DevOps, UX). Fiches de synthèse personnelles.</span>
+              <span>Base de connaissances organisée par thèmes (Actu IT Générale, Cyber et sécurité Web, Code et Frameworks). Fiches de synthèse personnelles.</span>
             </div>
           </div>
           <div class="veille-step">
             <span class="step-num">04</span>
             <div class="step-info">
               <strong>Partage & Application</strong>
-              <span>Mise en pratique dans les projets, partage en cours et avec les pairs via Slack de promo.</span>
+              <span>Mise en pratique dans les projets, partage au sein de la classe.</span>
             </div>
           </div>
         </div>
 
-        <a href="https://notion.so" target="_blank" class="btn-notion">
+        <a href="https://www.notion.so/Veille-Technologique-3132f1d3a04c80099b24c9e1c3896fe6?source=copy_link" target="_blank" class="btn-notion">
           <span class="notion-icon">N</span>
           Consulter ma base de connaissances
           <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:.75rem;"></i>
@@ -1005,24 +1013,23 @@
 
         <div class="source-card">
           <div class="source-header">
-            <div class="source-icon"><i class="fa-brands fa-github"></i></div>
-            <span class="source-name">GitHub Trending</span>
+            <div class="source-icon"><i class="fa-solid fa-puzzle-piece"></i></div>
+            <span class="source-name">Extension "Save to Notion"</span>
           </div>
-          <p class="source-desc">Suivi quotidien des dépôts et projets open-source émergents dans les langages de ma stack.</p>
+          <p class="source-desc">Outil indispensable ajouté à mon navigateur. Il me permet d'extraire en un clic le contenu d'un article pertinent et de l'envoyer directement dans ma base de données avec les bons tags.</p>
         </div>
 
         <div class="source-card">
           <div class="source-header">
-            <div class="source-icon"><i class="fa-brands fa-dev"></i></div>
-            <span class="source-name">Dev.to & Hacker News</span>
+            <div class="source-icon"><i class="fa-brands fa-youtube"></i></div>
+            <span class="source-name">YouTube (Chaînes Tech)</span>
           </div>
-          <p class="source-desc">Articles de la communauté développeur, discussions sur les bonnes pratiques, retours d'expérience et annonces de nouvelles versions.</p>
+          <p class="source-desc">Format vidéo idéal pour visualiser rapidement de nouveaux concepts. Chaînes francophones (comme Grafikart) pour les tutoriels, les bonnes pratiques et l'actualité du code.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ─── PARCOURS ──────────────────────────────── -->
   <section id="parcours">
     <div class="section-label">Parcours</div>
     <h2 class="section-title reveal">Mon <em>chemin</em></h2>
@@ -1032,91 +1039,99 @@
         <div class="timeline-dot"></div>
         <div class="timeline-date">2024 — 2026</div>
         <div class="timeline-title">BTS SIO · Option SLAM</div>
-        <div class="timeline-sub">Lycée / CFA — [Nom de l'établissement]</div>
-        <p class="timeline-desc">Formation en alternance couvrant le développement d'applications web & mobiles, la cybersécurité, les réseaux et la gestion de projets SI. Option SLAM : spécialisation développement fullstack.</p>
+        <div class="timeline-sub">Lycée Mathias / Chalon-sur-Saône</div>
+        <p class="timeline-desc">Formation en continu couvrant le développement d'applications web & mobiles, la cybersécurité, les réseaux et la gestion de projets SI. Option SLAM : Solutions logicielles et applications métiers.</p>
       </div>
 
       <div class="timeline-item">
         <div class="timeline-dot"></div>
-        <div class="timeline-date">Avril — Juin 2025</div>
-        <div class="timeline-title">Stage développeur — [Entreprise]</div>
-        <div class="timeline-sub">Développeur Web Fullstack</div>
-        <p class="timeline-desc">Développement d'une application interne de gestion des ressources sous Laravel. Mise en place de l'authentification, des rôles utilisateurs et de l'interface d'administration. Travail en équipe avec Git Flow.</p>
+        <div class="timeline-date">Janvier - Février 2026</div>
+        <div class="timeline-title">Stage - Création d'un écosystème Web - https://canva.link/xj98wf0rhqgef8o</div>
+        <div class="timeline-sub">Big Bill's</div>
+        <p class="timeline-desc">Conception et réalisation d'un site vitrine et d'une application de commande pour fast-food. WordPress, HTML/CSS/JS.</p>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">Mai — Juin 2025</div>
+        <div class="timeline-title">Stage - Refonte du système d'affichage dynamique - https://canva.link/gjepcnueadmcwir</div>
+        <div class="timeline-sub">IUT de Chalon-sur-Saône</div>
+        <p class="timeline-desc">Refonte et optimisation du système d'affichage dynamique des écrans de l'établissement. Améliorations Front-End + Back-end. HTML/CSS, PHP, Bash.</p>
       </div>
 
       <div class="timeline-item">
         <div class="timeline-dot"></div>
         <div class="timeline-date">2023 — 2024</div>
-        <div class="timeline-title">Baccalauréat — [Spécialité]</div>
-        <div class="timeline-sub">[Lycée] — Mention Bien</div>
-        <p class="timeline-desc">Obtention du baccalauréat avec les spécialités NSI (Numérique et Sciences Informatiques) et Mathématiques. Première découverte de la programmation Python et de l'algorithmique.</p>
+        <div class="timeline-title">BUT Informatique - 1ère année</div>
+        <div class="timeline-sub">IUT de Dijon</div>
+        <p class="timeline-desc">Formation en continu couvrant la programmation, le développement de sites Web, la cybersécurité, les réseaux et la gestion de projets SI.</p>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">2023</div>
+        <div class="timeline-title">Baccalauréat Général</div>
+        <div class="timeline-sub">Lycée Lamartine, Mâcon — Mention Bien</div>
+        <p class="timeline-desc">Obtention du baccalauréat. Première découverte de la programmation et de la logique algorithmique en spécialité NSI (Numérique et sciences informatiques).</p>
       </div>
     </div>
   </section>
 
-  <!-- ─── CONTACT ───────────────────────────────── -->
   <section id="contact">
     <div class="section-label">Contact</div>
     <h2 class="section-title reveal">Travaillons <em>ensemble</em></h2>
 
     <div class="contact-wrapper">
       <div class="contact-text reveal">
-        <p>
-          Je suis actuellement en formation et disponible pour des <strong>stages</strong>,
-          <strong>projets collaboratifs</strong> ou simplement pour échanger autour du code
-          et de l'architecture logicielle.
-        </p>
+        
         <p>N'hésitez pas à me contacter via les réseaux ou directement par email.</p>
 
         <div class="social-links">
-          <a href="https://linkedin.com/in/votre-profil" target="_blank" class="social-link">
+          <a href="https://linkedin.com/in/rayan-rimane" target="_blank" class="social-link">
             <i class="fa-brands fa-linkedin"></i>
             <span>LinkedIn</span>
-            <small>linkedin.com/in/vous</small>
+            <small>linkedin.com/in/rayan-rimane</small>
           </a>
-          <a href="https://github.com/votre-compte" target="_blank" class="social-link">
+          <a href="https://github.com/r-rimane" target="_blank" class="social-link">
             <i class="fa-brands fa-github"></i>
             <span>GitHub</span>
-            <small>github.com/vous</small>
+            <small>github.com/r-rimane</small>
           </a>
-          <a href="mailto:votre@email.fr" class="social-link">
+          <a href="mailto:rayan.rimane71@gmail.com" class="social-link">
             <i class="fa-solid fa-envelope"></i>
             <span>Email</span>
-            <small>votre@email.fr</small>
+            <small>rayan.rimane71@gmail.com</small>
           </a>
         </div>
       </div>
 
-      <div class="contact-form reveal">
+      <form id="contactForm" action="https://formspree.io/f/mzdgkrdr" method="POST" class="contact-form reveal">
         <div class="form-group">
           <label>Votre nom</label>
-          <input type="text" placeholder="Jean Dupont" />
+          <input type="text" name="nom" placeholder="Jean Dupont" required />
         </div>
         <div class="form-group">
           <label>Email</label>
-          <input type="email" placeholder="jean@email.com" />
+          <input type="email" name="email" placeholder="jean@email.com" required />
         </div>
         <div class="form-group">
           <label>Message</label>
-          <textarea rows="5" placeholder="Bonjour, je souhaitais..."></textarea>
+          <textarea name="message" rows="5" placeholder="Bonjour Rayan, je souhaitais..." required></textarea>
         </div>
-        <button class="btn-send" type="button">
+        <button class="btn-send" type="submit">
           <i class="fa-solid fa-paper-plane"></i>
-          Envoyer le message
+          <span id="btnText">Envoyer le message</span>
         </button>
-      </div>
+      </form>
     </div>
   </section>
 
-  <!-- FOOTER -->
   <footer>
     <div class="footer-left">
-      &lt;<span>Prénom NOM</span> /&gt; · BTS SIO SLAM · <span>2026</span>
+      &lt;<span>Rayan RIMANE</span> /&gt; · BTS SIO SLAM · <span>2026</span>
     </div>
-    <div class="footer-right">Conçu & codé avec passion ✦</div>
   </footer>
 
-  <!-- ─── JS ────────────────────────────────────── -->
   <script>
     /* Custom cursor */
     const dot = document.getElementById('cursorDot');
@@ -1134,9 +1149,7 @@
     /* Typing animation */
     const phrases = [
       'Développeur Fullstack en devenir',
-      'Étudiant BTS SIO · Option SLAM',
-      'Passionné d\'architecture logicielle',
-      'Builder · Apprenant · Curieux'
+      'Étudiant BTS SIO · Option SLAM'
     ];
     let pi = 0, ci = 0, deleting = false, wait = 0;
     const typed = document.getElementById('typed');
@@ -1182,6 +1195,47 @@
       document.querySelector('nav').style.background =
         window.scrollY > 40 ? 'rgba(8,12,16,.97)' : 'rgba(8,12,16,.85)';
     });
+
+
+
+
+    /* Gestion du formulaire de contact avec Formspree (sans rechargement) */
+    const contactForm = document.getElementById('contactForm');
+    const btnText = document.getElementById('btnText');
+
+    if (contactForm) {
+      contactForm.addEventListener('submit', async function(e) {
+        e.preventDefault(); // Empêche le rechargement de la page
+        
+        // Change le texte du bouton pendant l'envoi
+        const originalText = btnText.innerText;
+        btnText.innerText = "Envoi en cours...";
+
+        const formData = new FormData(contactForm);
+
+        try {
+          const response = await fetch(contactForm.action, {
+            method: 'POST',
+            body: formData,
+            headers: {
+              'Accept': 'application/json'
+            }
+          });
+
+          if (response.ok) {
+            contactForm.reset(); // Vide les champs du formulaire
+            btnText.innerText = "Message envoyé !";
+            setTimeout(() => { btnText.innerText = originalText; }, 3000); // Remet le texte normal après 3s
+          } else {
+            btnText.innerText = "Erreur lors de l'envoi";
+            setTimeout(() => { btnText.innerText = originalText; }, 3000);
+          }
+        } catch (error) {
+          btnText.innerText = "Erreur réseau";
+          setTimeout(() => { btnText.innerText = originalText; }, 3000);
+        }
+      });
+    }
   </script>
 </body>
 </html>
