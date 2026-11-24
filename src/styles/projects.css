@@ -1,0 +1,275 @@
+.night {
+  position: relative;
+  z-index: 2;
+  color: #fff;
+  background: var(--color-night);
+  --color-soft: #a9bdb5;
+  padding-top: 60px;
+  margin-top: -61px;
+  clip-path: polygon(0 60px, 52% 60px, calc(52% + 60px) 0, 100% 0, 100% 100%, 0 100%);
+}
+.night em,
+.contact em {
+  color: var(--color-mint);
+}
+.work {
+  display: grid;
+  grid-template-columns: minmax(0, 1.28fr) minmax(0, 0.72fr);
+  gap: clamp(32px, 4.5vw, 76px);
+}
+.stage {
+  --c: 34px;
+  position: sticky;
+  top: 100px;
+  height: min(700px, calc(100svh - 124px));
+  background: linear-gradient(160deg, #5fa98d, #20392f 50%, #356554);
+  display: flex;
+  flex-direction: column;
+  isolation: isolate;
+}
+.stage::before {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  z-index: -1;
+  background:
+    radial-gradient(#2b4a3f 1px, #0000 1.4px) 0 0/26px 26px,
+    linear-gradient(#0e231b, #0a1813);
+}
+.tabs {
+  display: flex;
+  gap: 8px;
+  padding: 20px 48px 0 24px;
+}
+.tabs a {
+  flex: 1;
+  font-size: 15px;
+  font-weight: 600;
+  color: #93aba0;
+  padding: 8px 2px 0;
+  border-top: 2px solid #2c4b40;
+  position: relative;
+}
+.tabs a::before {
+  content: "";
+  position: absolute;
+  inset: -2px 0 auto;
+  height: 2px;
+  background: var(--color-mint);
+  transform: scaleX(var(--progress, 0));
+  transform-origin: 0 0;
+}
+.tabs a.on,
+.tabs a:hover {
+  color: #fff;
+}
+.boards {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+}
+.flow {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 10px 24px 20px;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.45s,
+    visibility 0.45s;
+}
+.flow.on {
+  opacity: 1;
+  visibility: visible;
+}
+.flow.inline {
+  display: none;
+}
+.fit {
+  flex: 1;
+  min-height: 0;
+  container-type: size;
+  display: grid;
+  place-items: center;
+}
+.board {
+  --u: calc(min(100cqw, 100cqh * 1.2)/640);
+  position: relative;
+  width: calc(640 * var(--u));
+  height: calc(500 * var(--u));
+}
+.morph .flow.on .board {
+  opacity: var(--in, 1);
+}
+.wires {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+.wires path {
+  fill: none;
+  stroke: #3f7f6a;
+  stroke-width: 1.6;
+  transition: 0.3s;
+}
+.wires .pulse {
+  stroke: #8ff5cf;
+  stroke-width: 2.6;
+  stroke-dasharray: 0.07 0.93;
+}
+.in-view .flow.on .pulse {
+  animation: pulse 2.6s linear infinite;
+}
+@keyframes pulse {
+  from {
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+.node {
+  --c: calc(13 * var(--u));
+  position: absolute;
+  isolation: isolate;
+  left: calc(var(--x) * var(--u));
+  top: calc(var(--y) * var(--u));
+  width: calc(var(--w) * var(--u));
+  height: calc(var(--h) * var(--u));
+  display: flex;
+  align-items: center;
+  gap: calc(13 * var(--u));
+  padding: 0 calc(16 * var(--u));
+  text-align: left;
+  color: #fff;
+  background: linear-gradient(#6aa791, #274a3e);
+  transition:
+    transform 0.4s var(--ease),
+    opacity 0.3s;
+}
+.node::before {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  z-index: -1;
+  background: linear-gradient(#1a382d, #11261f);
+}
+.node svg {
+  flex: none;
+  width: calc(25 * var(--u));
+  height: calc(25 * var(--u));
+  fill: none;
+  stroke: var(--color-mint);
+  stroke-width: 1.7;
+}
+.node b {
+  display: block;
+  font-weight: 620;
+  font-size: calc(17.5 * var(--u));
+  letter-spacing: -0.015em;
+  line-height: 1.2;
+}
+.node small {
+  display: block;
+  font-size: calc(13.5 * var(--u));
+  color: #a9c3b8;
+  line-height: 1.3;
+}
+.node.core {
+  background: #8ff5cf;
+}
+.node.core::before {
+  background: linear-gradient(#12825d, #0b6a4b);
+}
+.node.core svg {
+  stroke: #eafff6;
+}
+.node.core small {
+  color: #d9f7ea;
+}
+.node:focus-visible {
+  outline: 0;
+}
+.node:focus-visible::before {
+  box-shadow: inset 0 0 0 2px #8ff5cf;
+}
+.board.live .node {
+  opacity: 0.28;
+}
+.board.live .node.lit {
+  opacity: 1;
+  transform: translateY(-3px);
+}
+.board.live .wires path {
+  opacity: 0.16;
+}
+.board.live .wires path.lit {
+  opacity: 1;
+  stroke: #8ff5cf;
+  stroke-width: 2.4;
+}
+.flow figcaption {
+  min-height: 3.4em;
+  margin-left: 24px;
+  color: #c6d8d0;
+  font-size: 16px;
+  line-height: 1.5;
+  border-top: 1px solid #2c4b40;
+  padding-top: 14px;
+}
+.flow figcaption b {
+  color: #fff;
+}
+.project {
+  min-height: 74svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 22px;
+}
+.project:first-child {
+  min-height: min(700px, calc(100svh - 124px));
+}
+.project h3 {
+  font-size: clamp(32px, 3.2vw, 50px);
+}
+.project > p {
+  color: var(--color-soft);
+  font-size: 19px;
+}
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.chips li {
+  border: 1px solid #42675a;
+  padding: 3px 11px;
+  font-size: 16px;
+  transition: 0.25s;
+}
+.chips li:hover {
+  background: var(--color-mint);
+  color: var(--color-ink);
+}
+.code-link {
+  align-self: flex-start;
+  font-weight: 640;
+  color: var(--color-mint);
+  border-bottom: 2px solid;
+  padding: 0 2px;
+  transition: 0.25s;
+}
+.code-link:hover {
+  background: var(--color-mint);
+  color: var(--color-ink);
+}
+.night :focus-visible,
+.contact :focus-visible {
+  outline-color: #8ff5cf;
+}

@@ -1,0 +1,89 @@
+/* Boutons : libellé et bloc flèche, angle coupé ; le bloc envahit le bouton au survol. */
+.btn {
+  --fill: var(--color-accent);
+  --block: var(--color-deep);
+  --on: #fff;
+  --tip: #fff;
+  --hover: #fff;
+  position: relative;
+  isolation: isolate;
+  display: inline-flex;
+  align-items: stretch;
+  height: 58px;
+  padding: 0;
+  background: var(--fill);
+  color: var(--on);
+  font-weight: 640;
+  font-size: 17px;
+  letter-spacing: -0.01em;
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%);
+}
+.btn span {
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  transition: color 0.3s;
+}
+.btn i {
+  width: 58px;
+  display: grid;
+  place-items: center;
+  font-style: normal;
+  font-size: 20px;
+  color: var(--tip);
+  transition: transform 0.45s var(--ease);
+}
+.btn::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0 0 0 auto;
+  width: 58px;
+  background: var(--block);
+  transition: width 0.5s var(--ease);
+}
+.btn:hover::before {
+  width: 100%;
+}
+.btn:hover span {
+  color: var(--hover);
+}
+.btn:hover i {
+  transform: translateX(4px);
+}
+.btn:active {
+  translate: 0 2px;
+}
+.btn:focus-visible {
+  outline: 0;
+  box-shadow: inset 0 0 0 4px var(--color-mint);
+}
+.btn.dark {
+  --fill: var(--color-ink);
+  --block: var(--color-mint);
+  --tip: var(--color-ink);
+  --hover: var(--color-ink);
+}
+.btn.small {
+  --fill: var(--color-ink);
+  --block: var(--color-accent);
+  height: 46px;
+  font-size: 16px;
+}
+.btn.small span {
+  padding: 0 18px;
+}
+.btn.small i {
+  width: 46px;
+}
+.btn.small:not(:hover)::before {
+  width: 46px;
+}
+.contact .btn,
+.site-header.dark .btn {
+  --fill: #fff;
+  --on: var(--color-ink);
+  --block: var(--color-mint);
+  --tip: var(--color-ink);
+  --hover: var(--color-ink);
+}

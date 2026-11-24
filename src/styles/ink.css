@@ -1,0 +1,44 @@
+/* Changement de voix : italique à empattements, soulignement et surligneur. */
+em {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 450;
+  letter-spacing: -0.025em;
+  color: var(--color-accent);
+}
+h1 em,
+h2 em {
+  font-size: 1.07em;
+}
+.line {
+  background: linear-gradient(currentColor, currentColor) 0 94%/100% 0.055em no-repeat;
+  padding-bottom: 0.06em;
+}
+u {
+  text-decoration: none;
+  background: linear-gradient(var(--color-accent), var(--color-accent)) 0 100%/100% 2px no-repeat;
+}
+mark {
+  color: inherit;
+  background: linear-gradient(var(--color-mark), var(--color-mark)) 0 62%/100% 78% no-repeat;
+  padding: 0 0.2em;
+  margin: 0 -0.1em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+.line,
+mark,
+u {
+  transition: background-size 0.9s var(--ease) 0.15s;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .line.ink-pending {
+    background-size: 0 0.055em;
+  }
+  mark.ink-pending {
+    background-size: 0 78%;
+  }
+  u.ink-pending {
+    background-size: 0 2px;
+  }
+}

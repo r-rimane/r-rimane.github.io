@@ -1,0 +1,102 @@
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: color-mix(in srgb, var(--color-bg) 97%, transparent);
+  border-bottom: 1px solid transparent;
+  transition:
+    background 0.35s,
+    border-color 0.35s,
+    color 0.35s;
+}
+.site-header.scrolled {
+  border-color: var(--color-line);
+}
+.site-header.dark {
+  background: #081410f0;
+  color: #fff;
+  border-color: #24403a;
+}
+.site-header .wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 78px;
+  gap: 24px;
+}
+.name {
+  font-size: 20px;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+.name b {
+  font-weight: 700;
+}
+.wide-nav ul {
+  display: flex;
+  gap: clamp(12px, 2vw, 30px);
+  font-size: 16px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+.wide-nav a {
+  padding: 3px 5px;
+  background: linear-gradient(var(--color-mark), var(--color-mark)) 0 100%/0 100% no-repeat;
+  transition: background-size 0.35s var(--ease);
+}
+.wide-nav a:hover {
+  background-size: 100% 100%;
+}
+.site-header.dark .wide-nav a:hover {
+  color: var(--color-ink);
+}
+
+.menu {
+  display: none;
+}
+@media (max-width: 900px) {
+  .menu {
+    display: block;
+    position: relative;
+  }
+  .menu summary {
+    list-style: none;
+    height: 46px;
+    display: grid;
+    place-items: center;
+    padding-inline: 14px;
+    border: 1px solid currentColor;
+    font-size: 16px;
+    font-weight: 600;
+  }
+  .menu summary::-webkit-details-marker {
+    display: none;
+  }
+  .menu nav {
+    position: absolute;
+    right: 0;
+    top: 56px;
+    width: min(280px, 80vw);
+    background: #fff;
+    color: var(--color-ink);
+    border: 1px solid var(--color-ink);
+  }
+  .menu a {
+    display: block;
+    padding: 14px 20px;
+    font-weight: 560;
+  }
+  .menu li + li {
+    border-top: 1px solid var(--color-line);
+  }
+  .menu a:hover {
+    background: var(--color-mark);
+  }
+}
+
+/* Petits écrans : le contact passe dans le menu. */
+@media (max-width: 480px) {
+  .site-header .btn {
+    display: none;
+  }
+}

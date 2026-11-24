@@ -1,0 +1,131 @@
+.section {
+  padding-block: clamp(80px, 9vw, 140px);
+}
+.intro {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 24px;
+  align-items: end;
+  margin-bottom: clamp(38px, 4.5vw, 68px);
+}
+.intro p {
+  color: var(--color-soft);
+  font-size: 20px;
+  max-width: 34ch;
+}
+.statement {
+  font-size: clamp(23px, 2.25vw, 34px);
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+  font-weight: 500;
+  text-wrap: pretty;
+}
+.duo,
+.needs {
+  display: grid;
+  grid-template-columns: 0.75fr 1.25fr;
+  gap: 36px clamp(32px, 6vw, 110px);
+}
+.duo p + p {
+  margin-top: 26px;
+  font-size: 20px;
+  color: var(--color-soft);
+  max-width: 38em;
+}
+
+.search {
+  background: #e2eee8;
+  border-block: 1px solid var(--color-ink);
+}
+.offers {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+.offer {
+  --c: 34px;
+  background: #fff;
+  padding: clamp(28px, 3.4vw, 52px);
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  transition: background 0.35s;
+}
+.offer.deep {
+  background: var(--color-accent);
+  color: #fff;
+}
+.when {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 26px;
+  color: var(--color-accent);
+  margin-bottom: auto;
+}
+.deep .when {
+  color: var(--color-mark);
+}
+.offer h3 {
+  font-size: clamp(28px, 3vw, 44px);
+  margin: 44px 0 14px;
+}
+.offer p:last-child {
+  max-width: 34em;
+  color: var(--color-soft);
+}
+.offer.deep p:last-child {
+  color: #e0f5ec;
+}
+.offer:hover {
+  background: var(--color-mark);
+}
+.offer.deep:hover {
+  background: var(--color-deep);
+}
+.needs {
+  margin-top: 64px;
+}
+.needs h3 {
+  font-size: 26px;
+  line-height: 1.2;
+}
+.needs li {
+  font-size: clamp(20px, 1.9vw, 27px);
+  padding: 16px 0;
+  border-top: 1px solid var(--color-ink);
+}
+.needs li em {
+  font-size: 1.1em;
+}
+.search > .section {
+  padding-bottom: calc(clamp(80px, 9vw, 140px) + 60px);
+}
+
+/* Vert plus profond sur fond pâle, pour garder un contraste AA. */
+.search em,
+.search .offer:not(.deep) .when {
+  color: var(--color-deep);
+}
+
+.practical {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  margin-top: 36px;
+}
+.practical div {
+  padding-left: 18px;
+  border-left: 3px solid var(--color-accent);
+}
+.practical dt {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 24px;
+  line-height: 1.2;
+  color: var(--color-deep);
+}
+.practical dd {
+  font-size: 22px;
+  font-weight: 620;
+  letter-spacing: -0.02em;
+}

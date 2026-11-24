@@ -1,0 +1,63 @@
+/* Angles coupés : la signature de forme du site (cartes, panneau, cases des schémas). */
+.offer,
+.stage,
+.stage::before,
+.node,
+.node::before {
+  clip-path: polygon(
+    0 0,
+    calc(100% - var(--c)) 0,
+    100% var(--c),
+    100% 100%,
+    var(--c) 100%,
+    0 calc(100% - var(--c))
+  );
+}
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 92px;
+}
+body {
+  background: var(--color-bg);
+  color: var(--color-ink);
+  font: 400 18px/1.62 var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+button,
+summary {
+  cursor: pointer;
+}
+:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 4px;
+}
+.wrap {
+  width: 100%;
+  max-width: 1440px;
+  margin-inline: auto;
+  padding-inline: var(--gut);
+}
+.skip-link {
+  position: absolute;
+  left: -999px;
+}
+.skip-link:focus {
+  left: 16px;
+  top: 16px;
+  z-index: 50;
+  background: var(--color-ink);
+  color: #fff;
+  padding: 10px 16px;
+}
+h1,
+h2,
+h3 {
+  font-weight: 620;
+  letter-spacing: -0.035em;
+  line-height: 1.06;
+  text-wrap: balance;
+}
+h2 {
+  font-size: clamp(36px, 4.5vw, 66px);
+}

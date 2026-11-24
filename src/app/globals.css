@@ -1,0 +1,32 @@
+@import "tailwindcss";
+@import "../styles/base.css";
+@import "../styles/ink.css";
+@import "../styles/buttons.css";
+@import "../styles/header.css";
+@import "../styles/hero.css";
+@import "../styles/sections.css";
+@import "../styles/projects.css";
+@import "../styles/background.css";
+@import "../styles/contact.css";
+@import "../styles/responsive.css";
+
+@theme {
+  --font-sans: var(--font-host), system-ui, sans-serif;
+  --font-serif: var(--font-newsreader), Georgia, serif;
+
+  --color-bg: #f7f9f8;
+  --color-ink: #0b1613;
+  --color-soft: #4e5c56;
+  --color-line: #cfdad5;
+  --color-accent: #0b7a55;
+  --color-deep: #075c40;
+  --color-night: #081410;
+  --color-mint: #5fe0b0;
+  --color-mark: #b4f0d8;
+  --color-fog: #a9bdb5;
+}
+
+:root {
+  --ease: cubic-bezier(0.2, 0.75, 0.15, 1);
+  --gut: clamp(20px, 5vw, 80px);
+}
